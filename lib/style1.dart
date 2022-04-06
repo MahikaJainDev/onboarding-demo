@@ -37,9 +37,11 @@ class _Style1State extends State<Style1> {
                 onPageChanged: (int newIndex, reason) => setState(() => index = newIndex)
               ),
               items: slideList.map((i) => Column(
+             //   crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Expanded(
                     child: Container(
+                      width: MediaQuery.of(context).size.width,
                       color: i.color!,
                       child: Column(
                         children: [
@@ -73,11 +75,13 @@ class _Style1State extends State<Style1> {
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      i.heading!,
-                      style: Theme.of(context).textTheme.headline5?.copyWith(
-                        fontWeight: FontWeight.bold
-                      )
+                    child: Center(
+                      child: Text(
+                        i.heading!,
+                        style: Theme.of(context).textTheme.headline5?.copyWith(
+                          fontWeight: FontWeight.bold
+                        )
+                      ),
                     ),
                   ),
                   Padding(
@@ -89,6 +93,7 @@ class _Style1State extends State<Style1> {
                     ),
                   ),
                   MaterialButton(
+                    minWidth: 50.0,
                     child: const Text(
                       'Get Started'
                     ),
