@@ -90,7 +90,7 @@ class _Style3State extends State<Style3> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.all(8.0),
+                            padding: const EdgeInsets.all(12.0),
                             child: Text(
                               i.text!,
                               textAlign: TextAlign.justify,
