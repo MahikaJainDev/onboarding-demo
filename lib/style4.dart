@@ -37,7 +37,7 @@ class _Style4State extends State<Style4> {
               items: slideList.map((i) => Stack(
                 children: [
                   Container(
-                    color: Colors.teal,
+                    color: Colors.lightGreen[100],
                   ),
                   Positioned(
                     right: 0,
@@ -54,7 +54,7 @@ class _Style4State extends State<Style4> {
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
                                 i.heading!,
-                                style: Theme.of(context).textTheme.headline3
+                                style: Theme.of(context).textTheme.headlineLarge
                             ),
                           ),
                           Padding(
@@ -62,7 +62,7 @@ class _Style4State extends State<Style4> {
                             child: Text(
                               i.text!,
                               textAlign: TextAlign.justify,
-                              style: Theme.of(context).textTheme.bodyLarge,
+                              style: Theme.of(context).textTheme.caption,
                             ),
                           ),
                           Padding(
@@ -75,55 +75,50 @@ class _Style4State extends State<Style4> {
                                     padding: const EdgeInsets.all(8.0),
                                     child: AnimatedContainer(
                                       height: 10,
-                                      width: e==index? 25 : 10,
+                                      width: e==index? 30 : 10,
                                       duration: const Duration(milliseconds: 300),
                                       decoration: BoxDecoration(
-                                          color: slideList[e].color,
+                                          color: e==index ? Colors.teal : Colors.grey[400],
                                           borderRadius: BorderRadius.circular(8.0)
                                       ),
                                     ),
                                   )).toList(),
                                 ),
                                 Spacer(),
-                                index != slideList.length-1 ? MaterialButton(
-                                  // style: ButtonStyle(
-                                  //   backgroundColor: MaterialStateProperty.all(Colors.yellow),
-                                  //   shape: MaterialStateProperty.all(
-                                  //     RoundedRectangleBorder(
-                                  //       borderRadius: BorderRadius.circular(20)
-                                  //     )
-                                  //   )
-                                  // ),
-                                  color: Colors.yellowAccent,
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(20.0)
-                                    ),
-                                    onPressed: (){
-                                      controller.nextPage(duration: Duration(milliseconds: 500));
-                                    },
-                                    child: const Text('Next',
-                                    style: TextStyle(
-                                      color: Colors.green,
-                                      fontWeight: FontWeight.bold
-                                    ),
-                                    )
-                                ) : ElevatedButton(
-                                    style: ButtonStyle(
-                                        backgroundColor: MaterialStateProperty.all(Colors.yellow),
-                                        shape: MaterialStateProperty.all(
-                                            RoundedRectangleBorder(
-                                                borderRadius: BorderRadius.circular(20)
-                                            )
-                                        )
-                                    ),
-                                    onPressed: (){
-                                    },
-                                    child: Text('Sign up',
-                                      style: TextStyle(
-                                          color: Colors.green,
-                                          fontWeight: FontWeight.bold
+                                index != slideList.length-1 ? Container(
+                                  height: 45,
+                                  child: MaterialButton(
+                                    color: Colors.yellow,
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(25.0)
                                       ),
-                                    )
+                                      onPressed: (){
+                                        controller.nextPage(duration: Duration(milliseconds: 500));
+                                      },
+                                      child: const Text('Next',
+                                      style: TextStyle(
+                                        color: Colors.teal,
+                                        fontWeight: FontWeight.bold
+                                      ),
+                                      )
+                                  ),
+                                ) : Container(
+                                  height: 45,
+                                  child: MaterialButton(
+                                      color: Colors.yellow,
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(25.0)
+                                      ),
+
+                                      onPressed: (){
+                                      },
+                                      child: const Text('Sign up',
+                                        style: TextStyle(
+                                            color: Colors.teal,
+                                            fontWeight: FontWeight.bold
+                                        ),
+                                      )
+                                  ),
                                 )
                               ],
                             ),
