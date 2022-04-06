@@ -37,14 +37,19 @@ class _Style3State extends State<Style3> {
               items: slideList.map((i) => Stack(
                 children: [
                   Container(
-                    color: i.color!,
+                    decoration: BoxDecoration(
+                      image: const DecorationImage(
+                        image: AssetImage('assets/images/images.jpeg')
+                      ),
+                      color: i.color!,
+                    ),
                   ),
                   Positioned(
                     right: 0,
                     left: 0,
                     bottom: 0,
                     child: Card(
-                      margin: EdgeInsets.all(0.0),
+                      margin: const EdgeInsets.all(0.0),
                       color: Colors.white,
                       shape: const RoundedRectangleBorder(
                         borderRadius: BorderRadius.only(
@@ -59,13 +64,16 @@ class _Style3State extends State<Style3> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [0,1,2].map((e) => Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: SizedBox(
-                                  height: e==index ? 20 : 10,
-                                  width: e==index? 20 : 10,
+                                child: AnimatedContainer(
+                                  duration: const Duration(
+                                    milliseconds: 300
+                                  ),
+                                  height: 10,
+                                  width: e==index? 25.0 : 10.0,
                                   child: Container(
                                     decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      color: e==index ? i.color : Colors.grey,
+                                        color: e==index ? slideList[e].color : Colors.grey[400],
+                                        borderRadius: BorderRadius.circular(8.0)
                                     ),
                                   ),
                                 ),
@@ -76,7 +84,9 @@ class _Style3State extends State<Style3> {
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
                                 i.heading!,
-                                style: Theme.of(context).textTheme.headline3
+                                style: Theme.of(context).textTheme.headline3?.copyWith(
+                                    fontWeight: FontWeight.w600,
+                                )
                             ),
                           ),
                           Padding(
@@ -84,7 +94,7 @@ class _Style3State extends State<Style3> {
                             child: Text(
                               i.text!,
                               textAlign: TextAlign.justify,
-                              style: Theme.of(context).textTheme.bodyLarge,
+                              style: Theme.of(context).textTheme.caption,
                             ),
                           ),
                           index != 2 ? Padding(
@@ -93,21 +103,22 @@ class _Style3State extends State<Style3> {
                               children: [
                                 TextButton(
                                     onPressed: (){
-                                      controller.animateToPage(2, duration: Duration(milliseconds: 500));
+                                      controller.animateToPage(2, duration: const Duration(milliseconds: 500));
                                     },
                                     child: Text('Skip Now',
                                     style: Theme.of(context).textTheme.bodyLarge,
                                     )
                                 ),
-                                Spacer(),
+                                const Spacer(),
                                 FloatingActionButton(
                                   backgroundColor: i.color,
                                   onPressed: (){
-                                    controller.nextPage(duration: Duration(milliseconds: 500));
+                                    controller.nextPage(duration: const Duration(milliseconds: 500));
                                   },
-                                  child: Icon(
+                                  child: const Icon(
                                     Icons.navigate_next_rounded,
                                     color: Colors.white,
+                                    size: 30,
                                   ),
                                 ),
                               ],
