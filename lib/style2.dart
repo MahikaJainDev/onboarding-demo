@@ -95,33 +95,35 @@ class _Style2State extends State<Style2> {
           ),
         Padding(
           padding: const EdgeInsets.only(bottom: 20.0),
-          child: SizedBox(
-            width: 80.0,
-            height: 80.0,
-            child: Stack(
-              fit: StackFit.expand,
-              children: [
-                CircularProgressIndicator(
-                  value: setIndicator(index),
-                  backgroundColor: Colors.grey[400],
-                  strokeWidth: 2.0,
-                  color: Colors.pink,
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: FloatingActionButton(
-                    elevation: 0.0,
-                    backgroundColor: Colors.pink,
-                    onPressed: (){
-                        controller.nextPage(duration: const Duration(milliseconds: 500));
-                    },
-                    child: const Icon(
-                      Icons.arrow_forward,
-                      size: 30,
-                    ),
+          child: Center(
+            child: SizedBox(
+              width: 80.0,
+              height: 80.0,
+              child: Stack(
+               fit: StackFit.expand,
+                children: [
+                  CircularProgressIndicator(
+                    value: setIndicator(index),
+                    backgroundColor: Colors.grey[400],
+                    strokeWidth: 2.0,
+                    color: Colors.pink,
                   ),
-                )
-              ],
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: FloatingActionButton(
+                      elevation: 0.0,
+                      backgroundColor: Colors.pink,
+                      onPressed: (){
+                          controller.nextPage(duration: const Duration(milliseconds: 500));
+                      },
+                      child: const Icon(
+                        Icons.arrow_forward,
+                        size: 30,
+                      ),
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
         )
