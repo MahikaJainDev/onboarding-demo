@@ -69,64 +69,64 @@ class _Style2State extends State<Style2> {
                       style: Theme.of(context).textTheme.caption,
                     ),
                   ),
-                ],
-              )).toList(),
-            ),
-          ),
-          SizedBox(
-            height: 200,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [0,1,2,3].map((e) => Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: AnimatedContainer(
-                  duration: const Duration(milliseconds: 300),
-                  height: 10,
-                  width: e==index? 25.0 : 10.0,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8.0),
-                      color: e==index ? const Color(0xff000000) : Colors.grey[400],
+                  SizedBox(
+                    height: 200,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [0,1,2,3].map((e) => Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: AnimatedContainer(
+                          duration: const Duration(milliseconds: 300),
+                          height: 10,
+                          width: e==index? 25.0 : 10.0,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8.0),
+                              color: e==index ? const Color(0xff000000) : Colors.grey[400],
+                            ),
+                          ),
+                        ),
+                      )).toList(),
                     ),
                   ),
-                ),
-              )).toList(),
-            ),
-          ),
-        Padding(
-          padding: const EdgeInsets.only(bottom: 20.0),
-          child: Center(
-            child: SizedBox(
-              width: 100.0,
-              height: 100.0,
-              child: Stack(
-               fit: StackFit.expand,
-                children: [
-                  CircularProgressIndicator(
-                    value: setIndicator(index),
-                    backgroundColor: Colors.grey[400],
-                    strokeWidth: 2.0,
-                    color: Colors.pink,
-                  ),
                   Padding(
-                    padding: const EdgeInsets.all(12.0),
-                    child: FloatingActionButton(
-                      elevation: 0.0,
-                      backgroundColor: Colors.pink,
-                      onPressed: (){
-                          controller.nextPage(duration: const Duration(milliseconds: 500));
-                      },
-                      child: const Icon(
-                        Icons.arrow_forward,
-                        size: 30,
+                    padding: const EdgeInsets.only(bottom: 20.0),
+                    child: Center(
+                      child: SizedBox(
+                        width: 100.0,
+                        height: 100.0,
+                        child: Stack(
+                          fit: StackFit.expand,
+                          children: [
+                            CircularProgressIndicator(
+                              value: setIndicator(index),
+                              backgroundColor: Colors.grey[400],
+                              strokeWidth: 2.0,
+                              color: Colors.pink,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(12.0),
+                              child: FloatingActionButton(
+                                elevation: 0.0,
+                                backgroundColor: Colors.pink,
+                                onPressed: (){
+                                  controller.nextPage(duration: const Duration(milliseconds: 500));
+                                },
+                                child: const Icon(
+                                  Icons.arrow_forward,
+                                  size: 30,
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
                       ),
                     ),
                   )
                 ],
-              ),
+              )).toList(),
             ),
           ),
-        )
         ],
       ),
     );
