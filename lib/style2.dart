@@ -97,8 +97,8 @@ class _Style2State extends State<Style2> {
           padding: const EdgeInsets.only(bottom: 20.0),
           child: Center(
             child: SizedBox(
-              width: 80.0,
-              height: 80.0,
+              width: 100.0,
+              height: 100.0,
               child: Stack(
                fit: StackFit.expand,
                 children: [
@@ -109,7 +109,7 @@ class _Style2State extends State<Style2> {
                     color: Colors.pink,
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(12.0),
                     child: FloatingActionButton(
                       elevation: 0.0,
                       backgroundColor: Colors.pink,
