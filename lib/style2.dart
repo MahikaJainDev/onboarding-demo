@@ -14,11 +14,26 @@ class _Style2State extends State<Style2> {
   int index = 0;
   final CarouselController controller = CarouselController();
   final slideList = [
-    Slide(color: Colors.white, heading: 'title1', text: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.'),
-    Slide(color: Colors.white, heading: 'title2', text: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.'),
-    Slide(color: Colors.white, heading: 'title3', text: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.'),
-    Slide(color: Colors.white, heading: 'title4', text: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.'),
-  ];
+    Slide(
+        color: const Color(0xff493e8a),
+        subtitle: 'Quick & Easy Payments',
+        caption: 'Grow Your Business By Accepting Card Payments With The New Card Reader.',
+        imagePath: 'assets/images/style_2_1.png'
+    ),
+
+    Slide(
+        color: const Color(0xff493e8a),
+        subtitle: 'Smart Point Of Sale',
+        caption: 'Complete Point Of Sale System Tailored To Your Business Needs.',
+        imagePath: 'assets/images/style_2_2.png'
+    ),
+    Slide(
+        color: const Color(0xff493e8a),
+        subtitle: 'Instant Notifications',
+        caption: 'Instant Notifications Let You Quickly See New Purchases and Messages',
+        imagePath: 'assets/images/style_2_3.png'
+    ),
+    ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,49 +56,45 @@ class _Style2State extends State<Style2> {
                   Expanded(
                     child: Container(
                       width: MediaQuery.of(context).size.width,
-                      decoration: BoxDecoration(
-                        border:const  Border(
-                          bottom: BorderSide(
-                            color: Color(0xff000000)
-                          )
-                        ),
-                        color: i.color,
-                      ),
-                      child: Image.asset('assets/images/download.jpeg',
-                        fit: BoxFit.fill,
+                      child: Center(
+                        child: Image.asset(i.imagePath!),
                       ),
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 15),
+                    padding: const EdgeInsets.symmetric(horizontal: 20.0),
                     child: Text(
-                        i.heading!,
-                        style: Theme.of(context).textTheme.headline3
+                        i.subtitle!,
+                        style: Theme.of(context).textTheme.headline6?.copyWith(
+                          fontFamily: 'serif',
+                          fontWeight: FontWeight.bold,
+                          color: const Color(0xff493e8a)
+                        )
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                    padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
                     child: Text(
-                      i.text!,
-                      textAlign: TextAlign.justify,
-                      style: Theme.of(context).textTheme.caption,
+                      i.caption!,
+                      textAlign: TextAlign.center,
+                      style: Theme.of(context).textTheme.caption?.copyWith(
+                        fontFamily: 'serif'
+                      ),
                     ),
                   ),
                   SizedBox(
                     height: 200,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: [0,1,2,3].map((e) => Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: AnimatedContainer(
-                          duration: const Duration(milliseconds: 300),
-                          height: 10,
-                          width: e==index? 25.0 : 10.0,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8.0),
-                              color: e==index ? const Color(0xff000000) : Colors.grey[400],
-                            ),
+                      children: [0,1,2].map((e) => AnimatedContainer(
+                        duration: const Duration(milliseconds: 300),
+                        margin: const EdgeInsets.all(4.0),
+                        height: 6.0,
+                        width: e==index? 20.0 : 6.0,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8.0),
+                            color: e==index ? slideList[index].color : const Color(0xff999999),
                           ),
                         ),
                       )).toList(),
@@ -102,13 +113,13 @@ class _Style2State extends State<Style2> {
                               value: setIndicator(index),
                               backgroundColor: Colors.grey[400],
                               strokeWidth: 2.0,
-                              color: Colors.pink,
+                              color: const Color(0xfff4338f),
                             ),
                             Padding(
                               padding: const EdgeInsets.all(12.0),
                               child: FloatingActionButton(
                                 elevation: 0.0,
-                                backgroundColor: Colors.pink,
+                                backgroundColor: const Color(0xfff4338f),
                                 onPressed: (){
                                   controller.nextPage(duration: const Duration(milliseconds: 500));
                                 },
@@ -134,10 +145,8 @@ class _Style2State extends State<Style2> {
   
   setIndicator(index){
     if(index==0) {
-      return 0.0;
+      return 0.20;
     } else if(index==1) {
-      return 0.25;
-    } else if(index==2){
       return 0.75;
     }
     return 1.0;
