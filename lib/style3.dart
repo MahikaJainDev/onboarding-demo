@@ -115,6 +115,51 @@ class _Style3State extends State<Style3> {
                               ),
                             ),
                           ),
+                          index != 2 ? Padding(
+                            padding: const EdgeInsets.all(20.0),
+                            child: Row(
+                              children: [
+                                TextButton(
+                                    onPressed: (){
+                                      controller.animateToPage(2, duration: const Duration(milliseconds: 500));
+                                    },
+                                    child: Text('Skip Now',
+                                      style: Theme.of(context).textTheme.bodyLarge,
+                                    )
+                                ),
+                                const Spacer(),
+                                FloatingActionButton(
+                                  backgroundColor: slideList[index].color,
+                                  onPressed: (){
+                                    controller.nextPage(duration: const Duration(milliseconds: 500));
+                                  },
+                                  child: const Icon(
+                                    Icons.navigate_next_rounded,
+                                    color: Colors.white,
+                                    size: 30,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ) : Padding(
+                            padding: const EdgeInsets.all(20.0),
+                            child: Container(
+                              width: MediaQuery.of(context).size.width,
+                              child: ElevatedButton(
+                                  style: ButtonStyle(
+                                      backgroundColor: MaterialStateProperty.all(
+                                          Colors.lightBlueAccent
+                                      ),
+                                      shape: MaterialStateProperty.all(
+                                          RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(5.0)
+                                          )
+                                      )
+                                  ),
+                                  onPressed: (){},
+                                  child: Text('Get started')),
+                            ),
+                          )
                         ],
                       ),
                     ),
@@ -123,51 +168,6 @@ class _Style3State extends State<Style3> {
               )).toList(),
             ),
           ),
-          index != 2 ? Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Row(
-              children: [
-                TextButton(
-                    onPressed: (){
-                      controller.animateToPage(2, duration: const Duration(milliseconds: 500));
-                    },
-                    child: Text('Skip Now',
-                      style: Theme.of(context).textTheme.bodyLarge,
-                    )
-                ),
-                const Spacer(),
-                FloatingActionButton(
-                  backgroundColor: slideList[index].color,
-                  onPressed: (){
-                    controller.nextPage(duration: const Duration(milliseconds: 500));
-                  },
-                  child: const Icon(
-                    Icons.navigate_next_rounded,
-                    color: Colors.white,
-                    size: 30,
-                  ),
-                ),
-              ],
-            ),
-          ) : Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Container(
-              width: MediaQuery.of(context).size.width,
-              child: ElevatedButton(
-                  style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(
-                          Colors.lightBlueAccent
-                      ),
-                      shape: MaterialStateProperty.all(
-                          RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(5.0)
-                          )
-                      )
-                  ),
-                  onPressed: (){},
-                  child: Text('Get started')),
-            ),
-          )
         ],
       ),
      );
