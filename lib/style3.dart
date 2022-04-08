@@ -49,124 +49,236 @@ class _Style3State extends State<Style3> {
                   initialPage: index,
                   onPageChanged: (int newIndex, reason) => setState(() => index = newIndex)
               ),
-              items: slideList.map((i) => Stack(
-                children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      color: i.color,
-                      image: DecorationImage(
-                        alignment: Alignment.topCenter,
-                        image: AssetImage(i.imagePath!,
-                        )
-                      )
-                    ),
-                  ),
-                  Positioned(
-                    right: 0,
-                    left: 0,
-                    bottom: 0,
-                    child: Card(
-                      margin: const EdgeInsets.all(0.0),
-                      color: Colors.white,
-                      shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(100)
-                        )
-                      ),
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(top: 15.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [0,1,2].map((e) => AnimatedContainer(
-                                duration: const Duration(
-                                  milliseconds: 300
-                                ),
-                                margin: const EdgeInsets.all(4.0),
-                                height: 6.0,
-                                width: e==index? 35.0 : 6.0,
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                      color: e==index ? slideList[e].color : const Color(0xffb4b1cf),
-                                      borderRadius: BorderRadius.circular(8.0)
+              items: slideList.map((i) => Container(
+                color: i.color,
+                child: Column(
+                  children: [
+                    Image.asset(i.imagePath!),
+                    Expanded(
+                      child: Card(
+                        margin: const EdgeInsets.all(0.0),
+                        color: Colors.white,
+                        shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(100)
+                            )
+                        ),
+                        child: Column(
+                        //  mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(top: 16.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [0,1,2].map((e) => AnimatedContainer(
+                                  duration: const Duration(
+                                      milliseconds: 300
                                   ),
-                                ),
-                              )).toList(),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 50),
-                            child: Text(
-                                i.subtitle!,
-                                textAlign: TextAlign.center,
-                                style: Theme.of(context).textTheme.headline6?.copyWith(
-                                    fontFamily: 'serif'
-                                )
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 50.0),
-                            child: Text(
-                              i.caption!,
-                              textAlign: TextAlign.center,
-                              style: Theme.of(context).textTheme.caption?.copyWith(
-                                fontFamily: 'serif'
+                                  margin: const EdgeInsets.all(4.0),
+                                  height: 6.0,
+                                  width: e==index? 35.0 : 6.0,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        color: e==index ? slideList[e].color : const Color(0xffb4b1cf),
+                                        borderRadius: BorderRadius.circular(8.0)
+                                    ),
+                                  ),
+                                )).toList(),
                               ),
                             ),
-                          ),
-                          index != 2 ? Padding(
-                            padding: const EdgeInsets.all(20.0),
-                            child: Row(
-                              children: [
-                                TextButton(
-                                    onPressed: (){
-                                      controller.animateToPage(2, duration: const Duration(milliseconds: 500));
-                                    },
-                                    child: Text('Skip Now',
-                                      style: Theme.of(context).textTheme.bodyLarge,
-                                    )
-                                ),
-                                const Spacer(),
-                                FloatingActionButton(
-                                  backgroundColor: slideList[index].color,
-                                  onPressed: (){
-                                    controller.nextPage(duration: const Duration(milliseconds: 500));
-                                  },
-                                  child: const Icon(
-                                    Icons.navigate_next_rounded,
-                                    color: Colors.white,
-                                    size: 30,
-                                  ),
-                                ),
-                              ],
+                            Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 22.0, horizontal: 50),
+                              child: Text(
+                                  i.subtitle!,
+                                  textAlign: TextAlign.center,
+                                  style: Theme.of(context).textTheme.headline6?.copyWith(
+                                      fontFamily: 'serif'
+                                  )
+                              ),
                             ),
-                          ) : Padding(
-                            padding: const EdgeInsets.all(20.0),
-                            child: Container(
-                              width: MediaQuery.of(context).size.width,
-                              child: ElevatedButton(
-                                  style: ButtonStyle(
-                                      backgroundColor: MaterialStateProperty.all(
-                                          Colors.lightBlueAccent
-                                      ),
-                                      shape: MaterialStateProperty.all(
-                                          RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.circular(5.0)
-                                          )
+                            Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 50.0),
+                              child: Text(
+                                i.caption!,
+                                textAlign: TextAlign.center,
+                                style: Theme.of(context).textTheme.caption?.copyWith(
+                                    fontFamily: 'serif',
+                                ),
+                              ),
+                            ),
+                            const Spacer(),
+                            index != 2 ? Padding(
+                              padding: const EdgeInsets.all(20.0),
+                              child: Row(
+                                children: [
+                                  TextButton(
+                                      onPressed: (){
+                                        controller.animateToPage(2, duration: const Duration(milliseconds: 500));
+                                      },
+                                      child: Text('Skip Now',
+                                        style: Theme.of(context).textTheme.bodyLarge,
                                       )
                                   ),
-                                  onPressed: (){},
-                                  child: Text('Get started')),
-                            ),
-                          )
-                        ],
+                                  const Spacer(),
+                                  FloatingActionButton(
+                                    backgroundColor: slideList[index].color,
+                                    onPressed: (){
+                                      controller.nextPage(duration: const Duration(milliseconds: 500));
+                                    },
+                                    child: const Icon(
+                                      Icons.navigate_next_rounded,
+                                      color: Colors.white,
+                                      size: 30,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ) : Padding(
+                              padding: const EdgeInsets.all(20.0),
+                              child: Container(
+                                width: MediaQuery.of(context).size.width,
+                                child: ElevatedButton(
+                                    style: ButtonStyle(
+                                        backgroundColor: MaterialStateProperty.all(
+                                            slideList[index].color
+                                        ),
+                                        shape: MaterialStateProperty.all(
+                                            RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.circular(5.0)
+                                            )
+                                        )
+                                    ),
+                                    onPressed: (){},
+                                    child: Text('Get started')),
+                              ),
+                            )
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                ],
-              )).toList(),
-            ),
+                  ],
+                ),
+              )).toList()
+      ),
+
+              //     Stack(
+              //   children: [
+              //     Container(
+              //       decoration: BoxDecoration(
+              //         color: i.color,
+              //         image: DecorationImage(
+              //           alignment: Alignment.topCenter,
+              //           image: AssetImage(i.imagePath!,
+              //           )
+              //         )
+              //       ),
+              //     ),
+              //     Positioned(
+              //       right: 0,
+              //       left: 0,
+              //       bottom: 0,
+              //       child: Card(
+              //         margin: const EdgeInsets.all(0.0),
+              //         color: Colors.white,
+              //         shape: const RoundedRectangleBorder(
+              //           borderRadius: BorderRadius.only(
+              //             topLeft: Radius.circular(100)
+              //           )
+              //         ),
+              //         child: Column(
+              //           children: [
+              //             Padding(
+              //               padding: const EdgeInsets.only(top: 15.0),
+              //               child: Row(
+              //                 mainAxisAlignment: MainAxisAlignment.center,
+              //                 children: [0,1,2].map((e) => AnimatedContainer(
+              //                   duration: const Duration(
+              //                     milliseconds: 300
+              //                   ),
+              //                   margin: const EdgeInsets.all(4.0),
+              //                   height: 6.0,
+              //                   width: e==index? 35.0 : 6.0,
+              //                   child: Container(
+              //                     decoration: BoxDecoration(
+              //                         color: e==index ? slideList[e].color : const Color(0xffb4b1cf),
+              //                         borderRadius: BorderRadius.circular(8.0)
+              //                     ),
+              //                   ),
+              //                 )).toList(),
+              //               ),
+              //             ),
+              //             Padding(
+              //               padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 50),
+              //               child: Text(
+              //                   i.subtitle!,
+              //                   textAlign: TextAlign.center,
+              //                   style: Theme.of(context).textTheme.headline6?.copyWith(
+              //                       fontFamily: 'serif'
+              //                   )
+              //               ),
+              //             ),
+              //             Padding(
+              //               padding: const EdgeInsets.symmetric(horizontal: 50.0),
+              //               child: Text(
+              //                 i.caption!,
+              //                 textAlign: TextAlign.center,
+              //                 style: Theme.of(context).textTheme.caption?.copyWith(
+              //                   fontFamily: 'serif'
+              //                 ),
+              //               ),
+              //             ),
+              //             index != 2 ? Padding(
+              //               padding: const EdgeInsets.all(20.0),
+              //               child: Row(
+              //                 children: [
+              //                   TextButton(
+              //                       onPressed: (){
+              //                         controller.animateToPage(2, duration: const Duration(milliseconds: 500));
+              //                       },
+              //                       child: Text('Skip Now',
+              //                         style: Theme.of(context).textTheme.bodyLarge,
+              //                       )
+              //                   ),
+              //                   const Spacer(),
+              //                   FloatingActionButton(
+              //                     backgroundColor: slideList[index].color,
+              //                     onPressed: (){
+              //                       controller.nextPage(duration: const Duration(milliseconds: 500));
+              //                     },
+              //                     child: const Icon(
+              //                       Icons.navigate_next_rounded,
+              //                       color: Colors.white,
+              //                       size: 30,
+              //                     ),
+              //                   ),
+              //                 ],
+              //               ),
+              //             ) : Padding(
+              //               padding: const EdgeInsets.all(20.0),
+              //               child: Container(
+              //                 width: MediaQuery.of(context).size.width,
+              //                 child: ElevatedButton(
+              //                     style: ButtonStyle(
+              //                         backgroundColor: MaterialStateProperty.all(
+              //                             Colors.lightBlueAccent
+              //                         ),
+              //                         shape: MaterialStateProperty.all(
+              //                             RoundedRectangleBorder(
+              //                                 borderRadius: BorderRadius.circular(5.0)
+              //                             )
+              //                         )
+              //                     ),
+              //                     onPressed: (){},
+              //                     child: Text('Get started')),
+              //               ),
+              //             )
+              //           ],
+              //         ),
+              //       ),
+              //     ),
+              //   ],
+              // )).toList(),
+            //),
           ),
         ],
       ),
