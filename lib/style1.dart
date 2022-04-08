@@ -13,9 +13,9 @@ class Style1 extends StatefulWidget {
 class _Style1State extends State<Style1> {
   int index = 0;
   final slideList = [
-    Slide(color: Colors.pinkAccent, heading: 'title1', text: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.'),
-    Slide(color: Colors.purpleAccent, heading: 'title2', text: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.'),
-    Slide(color: Colors.orange, heading: 'title3', text: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.'),
+    Slide(color: Colors.pink[100], heading: 'Joyful for your Cat', text: 'Trust me, there\'s way to make your cat love you more and more every day'),
+    Slide(color: Colors.purple[200], heading: 'More Get Closer', text: 'Yep, of course you will get more closer with your beloved cat, absolutely.'),
+    Slide(color: Colors.orange[300], heading: 'Let\'s Care of Them', text: 'This is the best choice for you to pleasure your beloved cat, well yeah, let\'s do this!'),
   ];
   final CarouselController _controller = CarouselController();
 
@@ -74,30 +74,34 @@ class _Style1State extends State<Style1> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
                     child: Center(
                       child: Text(
                         i.heading!,
                         style: Theme.of(context).textTheme.headline5?.copyWith(
-                          fontWeight: FontWeight.bold
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'serif'
                         )
                       ),
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 20.0),
                     child: Text(
                       i.text!,
-                      textAlign: TextAlign.justify,
-                      style: Theme.of(context).textTheme.caption,
+                      textAlign: TextAlign.center,
+                      style: Theme.of(context).textTheme.caption?.copyWith(
+                        fontFamily: 'serif'
+                      )
                     ),
                   ),
+                  const SizedBox(height: 10,),
                   MaterialButton(
                     minWidth: 50.0,
                     child: const Text(
                       'Get Started'
                     ),
-                    color: i.color,
+                    color: index==1 ? Colors.orange[300] : Colors.purple[200],
                     textColor: Colors.white,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20.0)
@@ -120,12 +124,12 @@ class _Style1State extends State<Style1> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [0,1,2].map((e) {
                     return AnimatedContainer(
-                      height: 10.0,
+                      height: 6.0,
                       margin: const EdgeInsets.all(4.0),
-                      width: e==index ? 25.0 : 10.0,
+                      width: e==index ? 35.0 : 6.0,
                       duration: const Duration(milliseconds: 300),
                       decoration: BoxDecoration(
-                          color: slideList[e].color,
+                          color: e==index? Colors.orange[300] : const Color(0xff999999),
                           borderRadius: BorderRadius.circular(8.0)
                       ),
                     );
@@ -135,25 +139,37 @@ class _Style1State extends State<Style1> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     if(index!=0)
-                      TextButton(
-                        child: const Text(
-                            'Previous'
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                        child: TextButton(
+                          child: Text(
+                              'Prev',
+                            style: TextStyle(
+                              color: Colors.purple[200]
+                            ),
+                          ),
+                          onPressed: () {
+                            setState(() => index = index-1);
+                            _controller.previousPage(duration: const Duration(milliseconds: 300));
+                          },
                         ),
-                        onPressed: () {
-                          setState(() => index = index-1);
-                          _controller.previousPage(duration: const Duration(milliseconds: 300));
-                        },
                       ),
                     const Spacer(),
                     if(index!=slideList.length-1)
-                      TextButton(
-                        child: const Text(
-                            'Next'
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                        child: TextButton(
+                          child: Text(
+                              'Next',
+                            style: TextStyle(
+                              color: Colors.purple[200]
+                            ),
+                          ),
+                          onPressed: () {
+                            setState(() => index = index + 1);
+                            _controller.nextPage(duration: const Duration(milliseconds: 300));
+                          },
                         ),
-                        onPressed: () {
-                          setState(() => index = index + 1);
-                          _controller.nextPage(duration: const Duration(milliseconds: 300));
-                        },
                       ),
                   ],
                 )
