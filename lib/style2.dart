@@ -94,50 +94,50 @@ class _Style2State extends State<Style2> {
                         child: Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8.0),
-                            color: e==index ? slideList[index].color : const Color(0xff999999),
+                            color: e==index ? slideList[index].color : const Color(0xffb4b1cf),
                           ),
                         ),
                       )).toList(),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 20.0),
-                    child: Center(
-                      child: SizedBox(
-                        width: 100.0,
-                        height: 100.0,
-                        child: Stack(
-                          fit: StackFit.expand,
-                          children: [
-                            CircularProgressIndicator(
-                              value: setIndicator(index),
-                              backgroundColor: Colors.grey[400],
-                              strokeWidth: 2.0,
-                              color: const Color(0xfff4338f),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(12.0),
-                              child: FloatingActionButton(
-                                elevation: 0.0,
-                                backgroundColor: const Color(0xfff4338f),
-                                onPressed: (){
-                                  controller.nextPage(duration: const Duration(milliseconds: 500));
-                                },
-                                child: const Icon(
-                                  Icons.arrow_forward,
-                                  size: 30,
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                  )
                 ],
               )).toList(),
             ),
           ),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 20.0),
+            child: Center(
+              child: SizedBox(
+                width: 100.0,
+                height: 100.0,
+                child: Stack(
+                  fit: StackFit.expand,
+                  children: [
+                    CircularProgressIndicator(
+                      value: setIndicator(index),
+                      backgroundColor: const Color(0xffe4e5e5),
+                      strokeWidth: 2.0,
+                      color: const Color(0xfff4338f),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: FloatingActionButton(
+                        elevation: 0.0,
+                        backgroundColor: const Color(0xfff4338f),
+                        onPressed: (){
+                          controller.nextPage(duration: const Duration(milliseconds: 500));
+                        },
+                        child: const Icon(
+                          Icons.arrow_forward,
+                          size: 30,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          )
         ],
       ),
     );
