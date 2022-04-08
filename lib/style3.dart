@@ -13,10 +13,25 @@ class _Style3State extends State<Style3> {
   int index = 0;
   final CarouselController controller = CarouselController();
   final slideList = [
-    Slide(color: Colors.yellow, heading: 'title1', text: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.'),
-    Slide(color: Colors.teal, heading: 'title2', text: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.'),
-    Slide(color: Colors.lightBlueAccent, heading: 'title3', text: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.'),
-  ];
+    Slide(
+        color: const Color(0xfffee64b),
+        subtitle: 'Hmmm, Healthy Food',
+        caption: 'A variety of healthy foods made by the best chefs. Ingredients are easy to find, all delicious flavors can only be found at cookbunda',
+        imagePath: 'assets/images/style_4_1.png'
+    ),
+    Slide(
+        color: const Color(0xffa7e6f3),
+        subtitle: 'Fresh Drinks, Stay Fresh',
+        caption: 'Not only food, we provide clear healthy drink options for you. Fresh taste always accompanies you.',
+        imagePath: 'assets/images/style_4_2.png'
+    ),
+    Slide(
+        color: const Color(0xff32b67a),
+        subtitle: 'Let\'s Cooking',
+        caption: 'Are you ready to make a dish for your friends or family? Create an account and cook',
+        imagePath: 'assets/images/style_4_3.png'
+    ),
+    ];
 
   @override
   Widget build(BuildContext context) {
@@ -38,10 +53,12 @@ class _Style3State extends State<Style3> {
                 children: [
                   Container(
                     decoration: BoxDecoration(
-                      image: const DecorationImage(
-                        image: AssetImage('assets/images/images.jpeg')
-                      ),
-                      color: i.color!,
+                      color: i.color,
+                      image: DecorationImage(
+                        alignment: Alignment.topCenter,
+                        image: AssetImage(i.imagePath!,
+                        )
+                      )
                     ),
                   ),
                   Positioned(
@@ -59,89 +76,45 @@ class _Style3State extends State<Style3> {
                       child: Column(
                         children: [
                           Padding(
-                            padding: const EdgeInsets.all(8.0),
+                            padding: const EdgeInsets.only(top: 15.0),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
-                              children: [0,1,2].map((e) => Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: AnimatedContainer(
-                                  duration: const Duration(
-                                    milliseconds: 300
-                                  ),
-                                  height: 10,
-                                  width: e==index? 25.0 : 10.0,
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                        color: e==index ? slideList[e].color : Colors.grey[400],
-                                        borderRadius: BorderRadius.circular(8.0)
-                                    ),
+                              children: [0,1,2].map((e) => AnimatedContainer(
+                                duration: const Duration(
+                                  milliseconds: 300
+                                ),
+                                margin: const EdgeInsets.all(4.0),
+                                height: 6.0,
+                                width: e==index? 35.0 : 6.0,
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      color: e==index ? slideList[e].color : const Color(0xffb4b1cf),
+                                      borderRadius: BorderRadius.circular(8.0)
                                   ),
                                 ),
                               )).toList(),
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.all(8.0),
+                            padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 50),
                             child: Text(
-                                i.heading!,
-                                style: Theme.of(context).textTheme.headline3?.copyWith(
-                                    fontWeight: FontWeight.w600,
+                                i.subtitle!,
+                                textAlign: TextAlign.center,
+                                style: Theme.of(context).textTheme.headline6?.copyWith(
+                                    fontFamily: 'serif'
                                 )
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.all(12.0),
+                            padding: const EdgeInsets.symmetric(horizontal: 50.0),
                             child: Text(
-                              i.text!,
-                              textAlign: TextAlign.justify,
-                              style: Theme.of(context).textTheme.caption,
+                              i.caption!,
+                              textAlign: TextAlign.center,
+                              style: Theme.of(context).textTheme.caption?.copyWith(
+                                fontFamily: 'serif'
+                              ),
                             ),
                           ),
-                          index != 2 ? Padding(
-                            padding: const EdgeInsets.all(20.0),
-                            child: Row(
-                              children: [
-                                TextButton(
-                                    onPressed: (){
-                                      controller.animateToPage(2, duration: const Duration(milliseconds: 500));
-                                    },
-                                    child: Text('Skip Now',
-                                    style: Theme.of(context).textTheme.bodyLarge,
-                                    )
-                                ),
-                                const Spacer(),
-                                FloatingActionButton(
-                                  backgroundColor: i.color,
-                                  onPressed: (){
-                                    controller.nextPage(duration: const Duration(milliseconds: 500));
-                                  },
-                                  child: const Icon(
-                                    Icons.navigate_next_rounded,
-                                    color: Colors.white,
-                                    size: 30,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ) : Padding(
-                            padding: const EdgeInsets.all(20.0),
-                            child: Container(
-                              width: MediaQuery.of(context).size.width,
-                              child: ElevatedButton(
-                                style: ButtonStyle(
-                                  backgroundColor: MaterialStateProperty.all(
-                                    Colors.lightBlueAccent
-                                  ),
-                                  shape: MaterialStateProperty.all(
-                                    RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(5.0)
-                                    )
-                                  )
-                                ),
-                                  onPressed: (){},
-                                  child: Text('Get started')),
-                            ),
-                          )
                         ],
                       ),
                     ),
@@ -150,6 +123,51 @@ class _Style3State extends State<Style3> {
               )).toList(),
             ),
           ),
+          index != 2 ? Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Row(
+              children: [
+                TextButton(
+                    onPressed: (){
+                      controller.animateToPage(2, duration: const Duration(milliseconds: 500));
+                    },
+                    child: Text('Skip Now',
+                      style: Theme.of(context).textTheme.bodyLarge,
+                    )
+                ),
+                const Spacer(),
+                FloatingActionButton(
+                  backgroundColor: slideList[index].color,
+                  onPressed: (){
+                    controller.nextPage(duration: const Duration(milliseconds: 500));
+                  },
+                  child: const Icon(
+                    Icons.navigate_next_rounded,
+                    color: Colors.white,
+                    size: 30,
+                  ),
+                ),
+              ],
+            ),
+          ) : Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Container(
+              width: MediaQuery.of(context).size.width,
+              child: ElevatedButton(
+                  style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(
+                          Colors.lightBlueAccent
+                      ),
+                      shape: MaterialStateProperty.all(
+                          RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(5.0)
+                          )
+                      )
+                  ),
+                  onPressed: (){},
+                  child: Text('Get started')),
+            ),
+          )
         ],
       ),
      );
