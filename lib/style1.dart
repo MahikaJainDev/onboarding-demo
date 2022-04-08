@@ -78,9 +78,9 @@ class _Style1State extends State<Style1> {
                     child: Center(
                       child: Text(
                         i.heading!,
-                        style: Theme.of(context).textTheme.headline5?.copyWith(
-                          fontWeight: FontWeight.bold,
-                          fontFamily: 'serif'
+                        style: Theme.of(context).textTheme.headline6?.copyWith(
+                          // fontWeight: FontWeight.bold,
+                           fontFamily: 'serif',
                         )
                       ),
                     ),
