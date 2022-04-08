@@ -100,7 +100,7 @@ class _Style4State extends State<Style4> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 30),
+            padding: const EdgeInsets.symmetric(horizontal: 40.0, vertical: 30),
             child: Row(
               children: [
                 Row(
