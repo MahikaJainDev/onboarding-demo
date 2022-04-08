@@ -37,6 +37,7 @@ class _Style3State extends State<Style3> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Expanded(
             child: CarouselSlider(
@@ -53,7 +54,8 @@ class _Style3State extends State<Style3> {
                 color: i.color,
                 child: Column(
                   children: [
-                    Image.asset(i.imagePath!),
+                    Image.asset(i.imagePath!,
+                    ),
                     Expanded(
                       child: Card(
                         margin: const EdgeInsets.all(0.0),
@@ -106,52 +108,6 @@ class _Style3State extends State<Style3> {
                                 ),
                               ),
                             ),
-                            const Spacer(),
-                            index != 2 ? Padding(
-                              padding: const EdgeInsets.all(20.0),
-                              child: Row(
-                                children: [
-                                  TextButton(
-                                      onPressed: (){
-                                        controller.animateToPage(2, duration: const Duration(milliseconds: 500));
-                                      },
-                                      child: Text('Skip Now',
-                                        style: Theme.of(context).textTheme.bodyLarge,
-                                      )
-                                  ),
-                                  const Spacer(),
-                                  FloatingActionButton(
-                                    backgroundColor: slideList[index].color,
-                                    onPressed: (){
-                                      controller.nextPage(duration: const Duration(milliseconds: 500));
-                                    },
-                                    child: const Icon(
-                                      Icons.navigate_next_rounded,
-                                      color: Colors.white,
-                                      size: 30,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ) : Padding(
-                              padding: const EdgeInsets.all(20.0),
-                              child: Container(
-                                width: MediaQuery.of(context).size.width,
-                                child: ElevatedButton(
-                                    style: ButtonStyle(
-                                        backgroundColor: MaterialStateProperty.all(
-                                            slideList[index].color
-                                        ),
-                                        shape: MaterialStateProperty.all(
-                                            RoundedRectangleBorder(
-                                                borderRadius: BorderRadius.circular(5.0)
-                                            )
-                                        )
-                                    ),
-                                    onPressed: (){},
-                                    child: Text('Get started')),
-                              ),
-                            )
                           ],
                         ),
                       ),
@@ -160,7 +116,6 @@ class _Style3State extends State<Style3> {
                 ),
               )).toList()
       ),
-
               //     Stack(
               //   children: [
               //     Container(
@@ -280,6 +235,51 @@ class _Style3State extends State<Style3> {
               // )).toList(),
             //),
           ),
+          index != 2 ? Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Row(
+              children: [
+                TextButton(
+                    onPressed: (){
+                      controller.animateToPage(2, duration: const Duration(milliseconds: 500));
+                    },
+                    child: Text('Skip Now',
+                      style: Theme.of(context).textTheme.bodyLarge,
+                    )
+                ),
+                const Spacer(),
+                FloatingActionButton(
+                  backgroundColor: slideList[index].color,
+                  onPressed: (){
+                    controller.nextPage(duration: const Duration(milliseconds: 500));
+                  },
+                  child: const Icon(
+                    Icons.navigate_next_rounded,
+                    color: Colors.white,
+                    size: 30,
+                  ),
+                ),
+              ],
+            ),
+          ) : Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Container(
+              width: MediaQuery.of(context).size.width,
+              child: ElevatedButton(
+                  style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(
+                          slideList[index].color
+                      ),
+                      shape: MaterialStateProperty.all(
+                          RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(5.0)
+                          )
+                      )
+                  ),
+                  onPressed: (){},
+                  child: Text('Get started')),
+            ),
+          )
         ],
       ),
      );
