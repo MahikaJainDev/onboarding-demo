@@ -82,30 +82,45 @@ class _Style2State extends State<Style2> {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 200,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [0,1,2].map((e) => AnimatedContainer(
-                        duration: const Duration(milliseconds: 300),
-                        margin: const EdgeInsets.all(4.0),
-                        height: 6.0,
-                        width: e==index? 20.0 : 6.0,
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8.0),
-                            color: e==index ? slideList[index].color : const Color(0xffb4b1cf),
-                          ),
-                        ),
-                      )).toList(),
-                    ),
+                    // child: Row(
+                    //   mainAxisAlignment: MainAxisAlignment.center,
+                    //   children: [0,1,2].map((e) => AnimatedContainer(
+                    //     duration: const Duration(milliseconds: 300),
+                    //     margin: const EdgeInsets.all(4.0),
+                    //     height: 6.0,
+                    //     width: e==index? 20.0 : 6.0,
+                    //     child: Container(
+                    //       decoration: BoxDecoration(
+                    //         borderRadius: BorderRadius.circular(8.0),
+                    //         color: e==index ? slideList[index].color : const Color(0xffb4b1cf),
+                    //       ),
+                    //     ),
+                    //   )).toList(),
+                    // ),
                   ),
                 ],
               )).toList(),
             ),
           ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [0,1,2].map((e) => AnimatedContainer(
+              duration: const Duration(milliseconds: 300),
+              margin: const EdgeInsets.all(4.0),
+              height: 6.0,
+              width: e==index? 20.0 : 6.0,
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8.0),
+                  color: e==index ? slideList[index].color : const Color(0xffb4b1cf),
+                ),
+              ),
+            )).toList(),
+          ),
           Padding(
-            padding: const EdgeInsets.only(bottom: 20.0),
+            padding: const EdgeInsets.only(bottom: 20.0, top: 40),
             child: Center(
               child: SizedBox(
                 width: 100.0,
