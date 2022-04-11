@@ -58,7 +58,6 @@ class _Style4State extends State<Style4> {
                               color: i.color,
                               child: Image.asset(
                                 i.imagePath!,
-                                // alignment: Alignment.topRight,
                               ),
                             ),
                           ),
