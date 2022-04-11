@@ -128,11 +128,16 @@ class _Style2State extends State<Style2> {
                 child: Stack(
                   fit: StackFit.expand,
                   children: [
-                    CircularProgressIndicator(
-                      value: setIndicator(index),
-                      backgroundColor: const Color(0xffe4e5e5),
-                      strokeWidth: 2.0,
-                      color: const Color(0xfff4338f),
+                    AnimatedContainer(
+                      duration: const Duration(
+                        milliseconds: 500
+                      ),
+                      child: CircularProgressIndicator(
+                        value: setIndicator(index),
+                        backgroundColor: const Color(0xffe4e5e5),
+                        strokeWidth: 2.0,
+                        color: const Color(0xfff4338f),
+                      ),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(12.0),
