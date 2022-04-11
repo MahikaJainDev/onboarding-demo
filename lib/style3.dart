@@ -169,7 +169,7 @@ class _Style3State extends State<Style3> {
                         )
                     ),
                     onPressed: (){},
-                    child: Text('Get started')),
+                    child: const Text('Get started')),
               ),
             ),
           )
